@@ -40,7 +40,7 @@
                     </div>
 
                     
-                    <!-- Botón de inicio de sesión -->
+                    <!-- Botón de inicio de sesión  -->
                     <div class="flex items-center justify-between">
                         <button type="submit" class="w-full py-2 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
                             Iniciar sesión
