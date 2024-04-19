@@ -41,6 +41,6 @@ class LoginController extends Controller
     
         $request->session()->regenerateToken();
     
-        return redirect('/login'); // Cambia '/' por la URL de la página a la que quieras redirigir después del cierre de sesión
+        return redirect('/login'); 
     }
 }
