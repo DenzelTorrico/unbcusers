@@ -89,7 +89,6 @@ class UserList extends Component
             User::find($id)->delete();
             session()->flash('message', 'User Deleted Successfully.');
         } else {
-            // Aquí puedes agregar la lógica para restaurar el usuario si está en modo inactivo
             User::withTrashed()->find($id)->restore();
             session()->flash('message', 'User Restored Successfully.');
         }
@@ -99,7 +98,6 @@ class UserList extends Component
     User::withTrashed()->find($id)->restore();
     session()->flash('message', 'User Activated Successfully.');
 }
-      // Método para mostrar usuarios activos
       public function showActive()
       {
           $this->showActive = true;
