@@ -27,6 +27,7 @@
             <tr class="bg-gray-500 text-white">
                 <th class="px-4 py-2">No.</th>
                 <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Last name</th>
                 <th class="px-4 py-2">Email</th>
                 <th class="px-4 py-2">Phone</th>
                 <th class="px-4 py-2">Action</th>
@@ -37,6 +38,7 @@
             <tr class="text-black">
                 <td class="border px-4 py-2">{{ $user->id }}</td>
                 <td class="border px-4 py-2">{{ $user->name }}</td>
+                <td class="border px-4 py-2">{{ $user->lastname }}</td>
                 <td class="border px-4 py-2">{{ $user->email }}</td>
                 <td class="border px-4 py-2">{{ $user->phone }}</td>
                 <td class="border px-4 py-2">
