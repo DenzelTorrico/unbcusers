@@ -1,6 +1,7 @@
 <!-- resources/views/livewire/user-crud.blade.php -->
 
 <div>
+
     @if($isOpen)
     @include('livewire.create-user-form')
     @endif
@@ -10,6 +11,8 @@
         {{ session('message') }}
     </div>
     @endif
+   
+
     <div class="my-3">
         <div class="p-3 text-green-800 rounded">
             <h2>Filtrar por activos e inactivos</h2>
@@ -19,9 +22,9 @@
 
 
     </div>
-    <table class="table-fixed w-full">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-100 dark:text-gray-400">
         <thead>
-            <tr class="bg-gray-100">
+            <tr class="bg-gray-500 text-white">
                 <th class="px-4 py-2">No.</th>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Email</th>
@@ -31,7 +34,7 @@
         </thead>
         <tbody>
             @foreach($users as $user)
-            <tr>
+            <tr class="text-black">
                 <td class="border px-4 py-2">{{ $user->id }}</td>
                 <td class="border px-4 py-2">{{ $user->name }}</td>
                 <td class="border px-4 py-2">{{ $user->email }}</td>

@@ -1,5 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -9,14 +7,28 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-      <!-- Styles -->
-      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        {{ $slot }}
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 text-white h-full">
+            <div class="p-4">
+                <!-- Logo o título del sidebar -->
+                <h1 class="text-lg font-bold">{{ config('app.name', 'Laravel usuarios') }}</h1>
+                <!-- Nombre de la sesión -->
+                <div class="text-lg text-white">
+                    <h1> Bienvenido, {{ auth()->user()->name }}</h1>
+                    </div>
+            </div>
+        </div>
+        
+        <!-- Contenido principal -->
+        <div class="flex-1 ml-3">
+            {{ $slot }}
+        </div>
     </div>
 
     <!-- Scripts -->
