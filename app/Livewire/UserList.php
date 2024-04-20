@@ -10,6 +10,9 @@ class UserList extends Component
     public $users, $name,$lastname,$password, $email, $phone, $user_id;
     public $isOpen = 0;
     public $showActive = true; 
+    public $editPassword = false;
+  
+
     public function render()
     {
         if ($this->showActive) {
@@ -23,6 +26,7 @@ class UserList extends Component
 
     public function create()
     {
+        $this->editPassword = false;;
         $this->resetInputFields();
         $this->openModal();
     }
@@ -31,6 +35,7 @@ class UserList extends Component
     {
         $this->isOpen = true;
     }
+    
 
     public function closeModal()
     {
@@ -47,29 +52,45 @@ class UserList extends Component
     }
 
     public function store()
-    {
-        $this->validate([
-            'name' => 'required',
-            'lastname'=>'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'password' => 'required:min:8',
-        ]);
+{
+    $rules = [
+        'name' => 'required',
+        'lastname' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
+    ];
 
-        User::updateOrCreate(['id' => $this->user_id], [
-            'name' => $this->name,
-            'lastname'=>$this->lastname,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'password' => bcrypt($this->password)
-        ]);
-
-        session()->flash('message', 
-            $this->user_id ? 'User Updated Successfully.' : 'User Created Successfully.');
-
-        $this->closeModal();
-        $this->resetInputFields();
+    // Aplicar la regla de validación 'required' a 'password' solo si $editPassword es false
+    if (!$this->editPassword) {
+        $rules['password'] = 'required|min:8';
+    } else {
+        // Si $editPassword es false, excluye la regla 'required' para el campo de contraseña
+        $rules['password'] = '';
     }
+
+    $this->validate($rules);
+
+    $userData = [
+        'name' => $this->name,
+        'lastname' => $this->lastname,
+        'email' => $this->email,
+        'phone' => $this->phone,
+    ];
+
+    // Incluir la contraseña en los datos del usuario si $editPassword es false
+    if (!$this->editPassword) {
+        $userData['password'] = bcrypt($this->password);
+    }
+
+    User::updateOrCreate(['id' => $this->user_id], $userData);
+
+    session()->flash('message', 
+        $this->user_id ? 'User Updated Successfully.' : 'User Created Successfully.');
+
+    $this->closeModal();
+    $this->resetInputFields();
+}
+
 
     public function edit($id)
     {
@@ -79,7 +100,8 @@ class UserList extends Component
         $this->lastname = $user->lastname;
         $this->email = $user->email;
         $this->phone = $user->phone;
-        $this->password = bcrypt($user->password);
+        $this->password = '';
+        $this->editPassword = true;
         $this->openModal();
     }
 
@@ -107,6 +129,7 @@ class UserList extends Component
       {
           $this->showActive = false;
       }
+     
       
       
 }
