@@ -56,7 +56,7 @@ class UserList extends Component
     $rules = [
         'name' => 'required',
         'lastname' => 'required',
-        'email' => 'required|email',
+        'email' => 'required|regex:/(.+)@(.+)\.(.+)/i',
         'phone' => 'required',
     ];
 
