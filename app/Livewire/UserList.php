@@ -115,16 +115,16 @@ class UserList extends Component
     {
         if ($this->showActive) {
             User::find($id)->delete();
-            session()->flash('message', 'User Deleted Successfully.');
+            session()->flash('message', 'Usuario inactivado correctamente.');
         } else {
             User::withTrashed()->find($id)->restore();
-            session()->flash('message', 'User Restored Successfully.');
+            session()->flash('message', 'Usuario restaurado correctamente.');
         }
     }
     public function activate($id)
 {
     User::withTrashed()->find($id)->restore();
-    session()->flash('message', 'User Activated Successfully.');
+    session()->flash('message', 'Usuario activado correctamente.');
 }
       public function showActive()
       {
