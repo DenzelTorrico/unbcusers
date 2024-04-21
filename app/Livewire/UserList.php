@@ -56,36 +56,42 @@ class UserList extends Component
     $rules = [
         'name' => 'required',
         'lastname' => 'required',
-        'email' => 'required',
+        'email' => 'required|email',
         'phone' => 'required',
     ];
 
-    // Aplicar la regla de validación 'required' a 'password' solo si $editPassword es false
+    // Si no se proporciona una contraseña, se excluye la validación de la misma
     if (!$this->editPassword) {
         $rules['password'] = 'required|min:8';
-    } else {
-        // Si $editPassword es false, excluye la regla 'required' para el campo de contraseña
-        $rules['password'] = '';
     }
 
-    $this->validate($rules);
+    $validatedData = $this->validate($rules);
+
+    // buscar un usuario con el mismo correo electrónico
+    $existingUser = User::where('email', $validatedData['email'])->first();
+
+    if ($existingUser && !$this->user_id) {
+        return back()->withErrors([
+            'unique' => 'El correo electrónico ya está en uso.',
+        ]);
+    }
 
     $userData = [
-        'name' => $this->name,
-        'lastname' => $this->lastname,
-        'email' => $this->email,
-        'phone' => $this->phone,
+        'name' => $validatedData['name'],
+        'lastname' => $validatedData['lastname'],
+        'email' => $validatedData['email'],
+        'phone' => $validatedData['phone'],
     ];
 
-    // Incluir la contraseña en los datos del usuario si $editPassword es false
-    if (!$this->editPassword) {
-        $userData['password'] = bcrypt($this->password);
+    // Si estamos creando un usuario o estamos editando pero no se está editando la contraseña, encriptamos y almacenamos la nueva contraseña
+    if (!$this->user_id || !$this->editPassword) {
+        $userData['password'] = bcrypt($validatedData['password']);
     }
 
+    // Utilizamos updateOrCreate() para crear o actualizar el usuario según sea necesario
     User::updateOrCreate(['id' => $this->user_id], $userData);
 
-    session()->flash('message', 
-        $this->user_id ? 'User Updated Successfully.' : 'User Created Successfully.');
+    session()->flash('message', $this->user_id ? 'Usuario Actualizado Correctamente.' : 'Usuario Creado Correctamente.');
 
     $this->closeModal();
     $this->resetInputFields();

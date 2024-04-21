@@ -26,11 +26,11 @@
         <thead>
             <tr class="bg-gray-500 text-white">
                 <th class="px-4 py-2">No.</th>
-                <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Last name</th>
-                <th class="px-4 py-2">Email</th>
-                <th class="px-4 py-2">Phone</th>
-                <th class="px-4 py-2">Action</th>
+                <th class="px-4 py-2">Nombres</th>
+                <th class="px-4 py-2">Apellidos</th>
+                <th class="px-4 py-2">Correo</th>
+                <th class="px-4 py-2">Teléfono</th>
+                <th class="px-4 py-2">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -44,7 +44,7 @@
                 <td class="border px-4 py-2">
                     @if ($showActive)
                     <button wire:click="edit({{ $user->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
-                    <button wire:click="delete({{ $user->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Borrar</button>
+                    <button wire:click="delete({{ $user->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Inactivar</button>
                     @else
                     <button wire:click="activate({{ $user->id }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Activar</button>
                     @endif
