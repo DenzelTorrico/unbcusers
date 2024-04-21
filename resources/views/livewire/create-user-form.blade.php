@@ -22,22 +22,22 @@
                                     @error('name') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="lastname" class="block mb-2 text-sm font-medium text-gray-600">Last Name</label>
+                                    <label for="lastname" class="block mb-2 text-sm font-medium text-gray-600">Apellidos</label>
                                     <input type="text" wire:model="lastname" id="lastname" name="lastname" placeholder="Apellido" class="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white">
                                     @error('lastname') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-600">Phone</label>
+                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-600">Telefono</label>
                                     <input type="text" wire:model="phone" id="phone" name="phone" placeholder="Telefono" class="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white">
                                     @error('phone') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-600">Email</label>
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-600">Correo</label>
                                     <input type="email" wire:model="email" id="email" name="email" placeholder="Correo" class="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white">
                                     @error('email') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-4">
-                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-600">Password</label>
+                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-600">Contraseña</label>
                                     <input type="password" wire:model="password" id="password" name="password" placeholder="Contraseña" class="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white" wire:disabled="false">
                                     @error('password') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
