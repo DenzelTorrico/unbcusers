@@ -27,6 +27,7 @@
 
                 <h2 class="mb-4 text-lg font-semibold text-gray-800">Iniciar sesión</h2>
 
+         
                 <!-- Formulario de inicio de sesión -->
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -34,11 +35,17 @@
                     <div class="mb-4">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-600">Correo electrónico</label>
                         <input id="email" type="email" name="email" :value="old('email')" required autofocus class="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white">
+                        @error('email')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-6">
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-600">Contraseña</label>
                         <input id="password" type="password" name="password" required autocomplete="current-password" class="w-full px-4 py-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none focus:bg-white">
+                        @error('password')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     
