@@ -57,15 +57,23 @@ class UserList extends Component
         'name' => 'required',
         'lastname' => 'required',
         'email' => 'required|regex:/(.+)@(.+)\.(.+)/i',
-        'phone' => 'required',
+        'phone' => 'required|min:9|max:9',
     ];
 
     // Si no se proporciona una contraseña, se excluye la validación de la misma
     if (!$this->editPassword) {
         $rules['password'] = 'required|min:8';
     }
+    $messages = [
+        'email.required' => 'El correo electrónico es obligatorio.',
+        'phone.required' => 'Llena el campo de teléfono',
+        'email.regex' => 'Tiene que tener un formato correcto de correo',
+        'name.required' => 'Llena este campo del nombre',
+        'phone.min'=>'Tiene que haber 9 números',
+        'password.required' => 'El campo contraseña es obligatorio.',
+    ];
 
-    $validatedData = $this->validate($rules);
+    $validatedData = $this->validate($rules,$messages);
 
     // buscar un usuario con el mismo correo electrónico
     $existingUser = User::where('email', $validatedData['email'])->first();
