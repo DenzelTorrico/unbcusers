@@ -30,7 +30,7 @@ class LoginController extends Controller
         'password' => 'required'
     ]);
 
-    // Check for soft-deleted user
+    // Verificar si el usuario está inactivo
     $user = User::withTrashed()
                 ->where('email', $validatedData['email'])
                 ->first();
@@ -41,13 +41,11 @@ class LoginController extends Controller
         ]);
     }
 
-    // Attempt authentication
+    // Autenticar
     if (Auth::attempt($validatedData)) {
-        // Authentication successful
         return redirect()->intended('/users');
     }
 
-    // Incorrect credentials
     return back()->withErrors([
         'email' => 'Credenciales incorrectas',
     ]);
