@@ -28,6 +28,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Ruta para redirigir a /users
-Route::fallback(function () {
+/*Route::fallback(function () {
     return redirect('/users');
-});
+});*/

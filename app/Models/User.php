@@ -73,6 +73,7 @@ class User extends Authenticatable
             'lastname.required' => 'El campo apellido es obligatorio.',
             'email.required' => 'El campo correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico debe ser una dirección de correo válida.',
+            'email.unique' => 'El correo no tiene que ser repetido',
             'email.regex' => 'Tiene que tener un formato correcto de correo',
             'phone.required' => 'El campo teléfono es obligatorio.',
             'phone.min' => 'El campo teléfono debe tener al menos :min dígitos.',

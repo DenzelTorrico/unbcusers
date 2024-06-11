@@ -9,7 +9,7 @@ class UserList extends Component
 {
     public $users, $name,$lastname,$password, $email, $phone, $user_id;
     public $isOpen = 0;
-    public $showActive = true; 
+    public $showActive = true;  
     public $editPassword = false;
   
 
@@ -40,6 +40,8 @@ class UserList extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+
+        $this->reset(); // Reinicia las propiedades del componente
     }
 
     private function resetInputFields(){

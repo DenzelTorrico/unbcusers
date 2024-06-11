@@ -6,7 +6,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite('resources/css/app.css')
